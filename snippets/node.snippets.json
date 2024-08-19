@@ -1,0 +1,262 @@
+{
+  
+    "Console Log": {
+        "prefix": "clog",
+        "body": [
+            "console.log($1);"
+        ],
+        "description": "Log output to the console"
+    },
+    "Function Declaration": {
+        "prefix": "fn",
+        "body": [
+            "function ${1:name}(${2:args}) {",
+            "\t$0",
+            "}"
+        ],
+        "description": "Function declaration"
+    },
+    "Arrow Function": {
+        "prefix": "af",
+        "body": [
+            "const ${1:name} = (${2:args}) => {",
+            "\t$0",
+            "};"
+        ],
+        "description": "Arrow function"
+    },
+    "Create HTTP Server": {
+        "prefix": "http-server",
+        "body": [
+            "const http = require('http');",
+            "",
+            "const hostname = '127.0.0.1';",
+            "const port = 3000;",
+            "",
+            "const server = http.createServer((req, res) => {",
+            "\tres.statusCode = 200;",
+            "\tres.setHeader('Content-Type', 'text/plain');",
+            "\tres.end('Hello World\\n');",
+            "});",
+            "",
+            "server.listen(port, hostname, () => {",
+            "\tconsole.log(`Server running at http://${hostname}:${port}/`);",
+            "});"
+        ],
+        "description": "Basic HTTP server setup"
+    },
+    "Import Module": {
+        "prefix": "import",
+        "body": [
+            "const ${1:moduleName} = require('${2:module}');"
+        ],
+        "description": "Import a Node.js module"
+    },
+    "Try Catch Block": {
+        "prefix": "trycatch",
+        "body": [
+            "try {",
+            "\t$1",
+            "} catch (error) {",
+            "\tconsole.error(error);",
+            "}"
+        ],
+        "description": "Basic try-catch block"
+    },
+    "Async Function": {
+        "prefix": "asyncfn",
+        "body": [
+            "async function ${1:name}(${2:args}) {",
+            "\ttry {",
+            "\t\t$3",
+            "\t} catch (error) {",
+            "\t\tconsole.error(error);",
+            "\t}",
+            "}"
+        ],
+        "description": "Async function with error handling"
+    },
+    "Express Basic Route": {
+        "prefix": "express-route",
+        "body": [
+            "const express = require('express');",
+            "const app = express();",
+            "",
+            "app.get('${1:/}', (req, res) => {",
+            "\tres.send('Hello World');",
+            "});",
+            "",
+            "app.listen(3000, () => {",
+            "\tconsole.log('Server running on port 3000');",
+            "});"
+        ],
+        "description": "Basic Express route setup"
+    },
+    "Export Module": {
+        "prefix": "export",
+        "body": [
+            "module.exports = ${1:module};"
+        ],
+        "description": "Export a Node.js module"
+    },
+    "Read File": {
+        "prefix": "readfile",
+        "body": [
+          "const fs = require('fs');",
+          "",
+          "fs.readFile('${1:path/to/file}', 'utf8', (err, data) => {",
+          "\tif (err) {",
+          "\t\tconsole.error(err);",
+          "\t\treturn;",
+          "\t}",
+          "\tconsole.log(data);",
+          "});"
+        ],
+        "description": "Read a file asynchronously"
+      },
+      "Write File": {
+        "prefix": "writefile",
+        "body": [
+          "const fs = require('fs');",
+          "",
+          "fs.writeFile('${1:path/to/file}', '${2:content}', 'utf8', (err) => {",
+          "\tif (err) {",
+          "\t\tconsole.error(err);",
+          "\t\treturn;",
+          "\t}",
+          "\tconsole.log('File written successfully');",
+          "});"
+        ],
+        "description": "Write content to a file asynchronously"
+      },
+      "Event Emitter": {
+        "prefix": "eventemitter",
+        "body": [
+          "const EventEmitter = require('events');",
+          "",
+          "class MyEmitter extends EventEmitter {}",
+          "",
+          "const myEmitter = new MyEmitter();",
+          "",
+          "myEmitter.on('${1:event}', () => {",
+          "\tconsole.log('${2:Event triggered}');",
+          "});",
+          "",
+          "myEmitter.emit('${1:event}');"
+        ],
+        "description": "Create and use an EventEmitter"
+      },
+      "HTTP Post Request": {
+        "prefix": "http-post",
+        "body": [
+          "const http = require('http');",
+          "",
+          "const options = {",
+          "\thostname: '${1:example.com}',",
+          "\tport: 80,",
+          "\tpath: '${2:/path}',",
+          "\tmethod: 'POST',",
+          "\theaders: {",
+          "\t\t'Content-Type': 'application/json',",
+          "\t\t'Content-Length': Buffer.byteLength('${3:payload}')",
+          "\t}",
+          "};",
+          "",
+          "const req = http.request(options, (res) => {",
+          "\tlet data = '';",
+          "",
+          "\tres.on('data', (chunk) => {",
+          "\t\tdata += chunk;",
+          "\t});",
+          "",
+          "\tres.on('end', () => {",
+          "\t\tconsole.log(data);",
+          "\t});",
+          "});",
+          "",
+          "req.on('error', (e) => {",
+          "\tconsole.error(`Problem with request: ${e.message}`);",
+          "});",
+          "",
+          "req.write('${3:payload}');",
+          "req.end();"
+        ],
+        "description": "Send an HTTP POST request"
+      },
+      "Mongoose Query": {
+        "prefix": "mongoose-query",
+        "body": [
+          "const ${1:ModelName} = require('./models/${1:ModelName}');",
+          "",
+          "${1:ModelName}.find({ ${2:field}: ${3:value} }, (err, docs) => {",
+          "\tif (err) {",
+          "\t\tconsole.error(err);",
+          "\t\treturn;",
+          "\t}",
+          "\tconsole.log(docs);",
+          "});"
+        ],
+        "description": "Query MongoDB using Mongoose"
+      },
+      "Middleware in Express": {
+        "prefix": "express-middleware",
+        "body": [
+          "const ${1:middlewareName} = (req, res, next) => {",
+          "\tconsole.log('${2:Middleware executed}');",
+          "\tnext();",
+          "};",
+          "",
+          "app.use(${1:middlewareName});"
+        ],
+        "description": "Create and use middleware in Express"
+      },
+      "Handle Promises": {
+        "prefix": "promise",
+        "body": [
+          "const ${1:promiseName} = new Promise((resolve, reject) => {",
+          "\t// Your asynchronous code here",
+          "\tif (/* success */) {",
+          "\t\tresolve(${2:result});",
+          "\t} else {",
+          "\t\treject(${3:error});",
+          "\t}",
+          "});",
+          "",
+          "${1:promiseName}.then((result) => {",
+          "\tconsole.log(result);",
+          "}).catch((error) => {",
+          "\tconsole.error(error);",
+          "});"
+        ],
+        "description": "Create and handle a Promise"
+      },
+      "Cluster Module": {
+        "prefix": "cluster",
+        "body": [
+          "const cluster = require('cluster');",
+          "const http = require('http');",
+          "const numCPUs = require('os').cpus().length;",
+          "",
+          "if (cluster.isMaster) {",
+          "\tconsole.log(`Master ${process.pid} is running`);",
+          "",
+          "\t// Fork workers.",
+          "for (let i = 0; i < numCPUs; i++) {",
+          "\t\tcluster.fork();",
+          "}",
+          "",
+          "\tcluster.on('exit', (worker, code, signal) => {",
+          "\t\tconsole.log(`Worker ${worker.process.pid} died`);",
+          "});",
+          "} else {",
+          "\thttp.createServer((req, res) => {",
+          "\t\tres.writeHead(200);",
+          "\t\tres.end('Hello World\\n');",
+          "}).listen(8000);",
+          "",
+          "\tconsole.log(`Worker ${process.pid} started`);",
+          "}"
+        ],
+        "description": "Create a cluster of Node.js processes"
+      }
+}

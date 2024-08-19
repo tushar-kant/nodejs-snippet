@@ -1,0 +1,32 @@
+{
+  "name": "nodejs-snippet",
+  "displayName": "nodejs express snippets",
+  "description": "node js snippets for vs code",
+  "url": "https://github.com/tushar-kant/nodejs-snippet.git",
+
+  "version": "0.0.5",
+  "publisher": "Zyronix",
+  "icon": "nodejs.jpeg",
+  "engines": {
+    "vscode": "^1.92.0"
+  },
+  "categories": [
+    "Snippets"
+  ],
+  "contributes": {
+    "snippets": [
+      {
+        "language": "node.js",
+        "path": "./snippets/snippets.code-snippets"
+      },
+      {
+        "language": "javascript",
+        "path": "./snippets/node.snippets.json"
+      },
+      {
+        "language": "json",
+        "path": "./snippets/express.snippets.json"
+      }
+    ]
+  }
+}
