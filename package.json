@@ -1,17 +1,18 @@
 {
-  "name": "nodejs-snippet",
-  "displayName": "nodejs express snippets",
-  "description": "node js snippets for vs code",
-  "url": "https://github.com/tushar-kant/nodejs-snippet.git",
-
-  "version": "0.0.5",
+  "name": "express-snipets",
+  "displayName": "NodeJs code Snippet",
+  "description": "Handy Node.js and Express.js code snippets for VS Code.",
+  "url": "https://github.com/tushar-kant/nodejs-snippet",
+  "version": "1.2.3",
   "publisher": "Zyronix",
-  "icon": "nodejs.jpeg",
+  "icon": "node.jpeg",
   "engines": {
     "vscode": "^1.92.0"
   },
   "categories": [
-    "Snippets"
+    "Snippets",
+    "Programming Languages",
+    "Formatters"
   ],
   "contributes": {
     "snippets": [

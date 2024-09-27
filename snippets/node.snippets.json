@@ -258,5 +258,745 @@
           "}"
         ],
         "description": "Create a cluster of Node.js processes"
-      }
+      },
+      
+        "Basic Express Setup": {
+          "prefix": "express-setup",
+          "body": [
+            "const express = require('express');",
+            "const app = express();",
+            "const port = ${1:3000};",
+            "",
+            "app.use(express.json());",
+            "",
+            "app.listen(port, () => {",
+            "\tconsole.log(`Server running on port ${port}`);",
+            "});"
+          ],
+          "description": "Basic Express server setup"
+        },
+        "GET Route": {
+          "prefix": "express-get",
+          "body": [
+            "app.get('${1:/}', (req, res) => {",
+            "\tres.send('${2:Hello World}');",
+            "});"
+          ],
+          "description": "Define a GET route"
+        },
+        "POST Route": {
+          "prefix": "express-post",
+          "body": [
+            "app.post('${1:/}', (req, res) => {",
+            "\tconst data = req.body;",
+            "\tres.status(201).send(data);",
+            "});"
+          ],
+          "description": "Define a POST route"
+        },
+        "PUT Route": {
+          "prefix": "express-put",
+          "body": [
+            "app.put('${1:/}', (req, res) => {",
+            "\tconst data = req.body;",
+            "\tres.send(data);",
+            "});"
+          ],
+          "description": "Define a PUT route"
+        },
+        "DELETE Route": {
+          "prefix": "express-delete",
+          "body": [
+            "app.delete('${1:/}', (req, res) => {",
+            "\tres.status(204).send();",
+            "});"
+          ],
+          "description": "Define a DELETE route"
+        },
+        "Middleware": {
+          "prefix": "express-middleware",
+          "body": [
+            "app.use((req, res, next) => {",
+            "\tconsole.log('${1:Request received}');",
+            "\tnext();",
+            "});"
+          ],
+          "description": "Define middleware"
+        },
+        "Error Handling Middleware": {
+          "prefix": "express-error",
+          "body": [
+            "app.use((err, req, res, next) => {",
+            "\tconsole.error(err.stack);",
+            "\tres.status(500).send('Something broke!');",
+            "});"
+          ],
+          "description": "Define error handling middleware"
+        },
+        "Router Setup": {
+          "prefix": "express-router",
+          "body": [
+            "const ${1:routerName} = require('express').Router();",
+            "",
+            "${1:routerName}.get('${2:/}', (req, res) => {",
+            "\tres.send('${3:Router working}');",
+            "});",
+            "",
+            "module.exports = ${1:routerName};"
+          ],
+          "description": "Set up an Express router"
+        },
+        "Serve Static Files": {
+          "prefix": "express-static",
+          "body": [
+            "app.use(express.static('${1:public}'));"
+          ],
+          "description": "Serve static files from a directory"
+        },
+        "Template Engine Setup": {
+          "prefix": "express-view",
+          "body": [
+            "app.set('view engine', '${1:ejs}');",
+            "app.set('views', '${2:views}');"
+          ],
+          "description": "Set up a template engine"
+        },
+        "Custom Error Page": {
+          "prefix": "express-custom-error",
+          "body": [
+            "app.use((req, res, next) => {",
+            "\tres.status(404).render('404', {",
+            "\t\tmessage: 'Page not found'",
+            "\t});",
+            "});"
+          ],
+          "description": "Render a custom 404 error page"
+        },
+        "JSON Response": {
+          "prefix": "express-json",
+          "body": [
+            "res.json({",
+            "\tmessage: '${1:Hello World}',",
+            "\tdata: ${2:data}",
+            "});"
+          ],
+          "description": "Send a JSON response"
+        },
+        "Redirect": {
+          "prefix": "express-redirect",
+          "body": [
+            "res.redirect('${1:/redirect-url}');"
+          ],
+          "description": "Redirect to another URL"
+        },
+        "Query Parameters": {
+          "prefix": "express-query",
+          "body": [
+            "const ${1:parameter} = req.query.${2:parameter};"
+          ],
+          "description": "Access query parameters from the request"
+        },
+        "Route Parameter": {
+          "prefix": "express-param",
+          "body": [
+            "const ${1:parameter} = req.params.${2:parameter};"
+          ],
+          "description": "Access route parameters from the request"
+        },
+        "Header Setting": {
+          "prefix": "express-header",
+          "body": [
+            "res.setHeader('${1:Content-Type}', '${2:text/html}');"
+          ],
+          "description": "Set response headers"
+        },
+        "Basic Authentication Middleware": {
+          "prefix": "express-auth",
+          "body": [
+            "const basicAuth = require('express-basic-auth');",
+            "",
+            "app.use(basicAuth({",
+            "\tusers: { '${1:username}': '${2:password}' },",
+            "\tchallenge: true",
+            "}));"
+          ],
+          "description": "Set up basic authentication middleware"
+        },
+        "CORS Middleware": {
+          "prefix": "express-cors",
+          "body": [
+            "const cors = require('cors');",
+            "",
+            "app.use(cors());"
+          ],
+          "description": "Set up CORS middleware"
+        },
+        "Rate Limiter Middleware": {
+          "prefix": "express-rate-limit",
+          "body": [
+            "const rateLimit = require('express-rate-limit');",
+            "",
+            "const limiter = rateLimit({",
+            "\twindowMs: 15 * 60 * 1000, // 15 minutes",
+            "\tmax: 100 // limit each IP to 100 requests per windowMs",
+            "});",
+            "",
+            "app.use(limiter);"
+          ],
+          "description": "Set up rate limiting middleware"
+        },
+        "Compression Middleware": {
+          "prefix": "express-compression",
+          "body": [
+            "const compression = require('compression');",
+            "",
+            "app.use(compression());"
+          ],
+          "description": "Set up compression middleware"
+        },
+        "Session Middleware": {
+          "prefix": "express-session",
+          "body": [
+            "const session = require('express-session');",
+            "",
+            "app.use(session({",
+            "\tsecret: '${1:your-secret}',",
+            "\tresave: false,",
+            "\tsaveUninitialized: true,",
+            "\tcookie: { secure: false }",
+            "}));"
+          ],
+          "description": "Set up session middleware"
+        },
+        "Body Parser Middleware": {
+          "prefix": "express-body-parser",
+          "body": [
+            "const bodyParser = require('body-parser');",
+            "",
+            "app.use(bodyParser.json());",
+            "app.use(bodyParser.urlencoded({ extended: true }));"
+          ],
+          "description": "Set up body parser middleware"
+        },
+        "File Upload Middleware": {
+          "prefix": "express-file-upload",
+          "body": [
+            "const fileUpload = require('express-fileupload');",
+            "",
+            "app.use(fileUpload());"
+          ],
+          "description": "Set up file upload middleware"
+        },
+        "Setup MongoDB Connection": {
+          "prefix": "express-mongodb",
+          "body": [
+            "const mongoose = require('mongoose');",
+            "",
+            "mongoose.connect('mongodb://localhost/${1:database}', {",
+            "\tuseNewUrlParser: true,",
+            "\tuseUnifiedTopology: true",
+            "});",
+            "",
+            "const db = mongoose.connection;",
+            "db.on('error', console.error.bind(console, 'connection error:'));",
+            "db.once('open', () => {",
+            "\tconsole.log('Connected to MongoDB');",
+            "});"
+          ],
+          "description": "Set up MongoDB connection"
+        },
+        "Setup PostgreSQL Connection": {
+          "prefix": "express-postgresql",
+          "body": [
+            "const { Client } = require('pg');",
+            "",
+            "const client = new Client({",
+            "\thost: '${1:localhost}',",
+            "\tdatabase: '${2:database}',",
+            "\tuser: '${3:user}',",
+            "\tpassword: '${4:password}'",
+            "});",
+            "",
+            "client.connect();",
+            "client.on('error', (err) => {",
+            "\tconsole.error('PostgreSQL connection error:', err.stack);",
+            "});"
+          ],
+          "description": "Set up PostgreSQL connection"
+        },
+        "Setup MySQL Connection": {
+          "prefix": "express-mysql",
+          "body": [
+            "const mysql = require('mysql');",
+            "",
+            "const connection = mysql.createConnection({",
+            "\thost: '${1:localhost}',",
+            "\tdatabase: '${2:database}',",
+            "\tuser: '${3:user}',",
+            "\tpassword: '${4:password}'",
+            "});",
+            "",
+            "connection.connect((err) => {",
+            "\tif (err) throw err;",
+            "\tconsole.log('Connected to MySQL');",
+            "});"
+          ],
+          "description": "Set up MySQL connection"
+        },
+        "Environment Variables": {
+          "prefix": "express-env",
+          "body": [
+            "require('dotenv').config();",
+            "",
+            "const port = process.env.PORT || ${1:3000};"
+          ],
+          "description": "Load environment variables from a .env file"
+        },
+        "Authentication Middleware": {
+          "prefix": "express-auth-middleware",
+          "body": [
+            "const jwt = require('jsonwebtoken');",
+            "",
+            "const authenticateToken = (req, res, next) => {",
+            "\tconst authHeader = req.headers['authorization'];",
+            "\tconst token = authHeader && authHeader.split(' ')[1];",
+            "",
+            "\tif (token == null) return res.sendStatus(401);",
+            "",
+            "\tjwt.verify(token, '${1:secret}', (err, user) => {",
+            "\t\tif (err) return res.sendStatus(403);",
+            "\t\treq.user = user;",
+            "\t\tnext();",
+            "\t});",
+            "};",
+            "",
+            "app.use(authenticateToken);"
+          ],
+          "description": "Set up JWT authentication middleware"
+        },
+        "Rate Limiting with Redis": {
+          "prefix": "express-rate-limit-redis",
+          "body": [
+            "const rateLimit = require('express-rate-limit');",
+            "const RedisStore = require('rate-limit-redis');",
+            "const redis = require('redis');",
+            "",
+            "const redisClient = redis.createClient();",
+            "",
+            "const limiter = rateLimit({",
+            "\tstore: new RedisStore({ client: redisClient }),",
+            "\twindowMs: 15 * 60 * 1000, // 15 minutes",
+            "\tmax: 100 // limit each IP to 100 requests per windowMs",
+            "});",
+            "",
+            "app.use(limiter);"
+          ],
+          "description": "Set up rate limiting with Redis"
+        },
+        "Basic Auth with Passport": {
+          "prefix": "express-passport-basic",
+          "body": [
+            "const passport = require('passport');",
+            "const BasicStrategy = require('passport-http').BasicStrategy;",
+            "",
+            "passport.use(new BasicStrategy((username, password, done) => {",
+            "\tif (username === '${1:admin}' && password === '${2:password}') {",
+            "\t\treturn done(null, { username });",
+            "\t} else {",
+            "\t\treturn done(null, false);",
+            "\t}",
+            "}));",
+            "",
+            "app.use(passport.initialize());"
+          ],
+          "description": "Set up basic authentication with Passport.js"
+        },
+        "Session Authentication with Passport": {
+          "prefix": "express-passport-session",
+          "body": [
+            "const passport = require('passport');",
+            "const session = require('express-session');",
+            "",
+            "app.use(session({",
+            "\tsecret: '${1:your-secret}',",
+            "\tresave: false,",
+            "\tsaveUninitialized: true",
+            "}));",
+            "",
+            "app.use(passport.initialize());",
+            "app.use(passport.session());"
+          ],
+          "description": "Set up session authentication with Passport.js"
+        },
+        "OAuth2 Authentication": {
+          "prefix": "express-oauth2",
+          "body": [
+            "const passport = require('passport');",
+            "const OAuth2Strategy = require('passport-oauth2').Strategy;",
+            "",
+            "passport.use(new OAuth2Strategy({",
+            "\tauthorizationURL: '${1:authorizationURL}',",
+            "\ttokenURL: '${2:tokenURL}',",
+            "\tclientID: '${3:clientID}',",
+            "\tclientSecret: '${4:clientSecret}',",
+            "\tcallbackURL: '${5:callbackURL}'",
+            "}, (accessToken, refreshToken, profile, done) => {",
+            "\t// Find or create user here",
+            "\tdone(null, profile);",
+            "}));",
+            "",
+            "app.use(passport.initialize());"
+          ],
+          "description": "Set up OAuth2 authentication with Passport.js"
+        },
+        "Redis Cache Middleware": {
+          "prefix": "express-redis-cache",
+          "body": [
+            "const redis = require('redis');",
+            "const client = redis.createClient();",
+            "",
+            "const cache = (req, res, next) => {",
+            "\tconst key = '${1:cacheKey}';",
+            "",
+            "\tclient.get(key, (err, data) => {",
+            "\t\tif (err) throw err;",
+            "\t\tif (data != null) {",
+            "\t\t\tres.send(JSON.parse(data));",
+            "\t\t} else {",
+            "\t\t\tres.sendResponse = res.send;",
+            "\t\t\tres.send = (body) => {",
+            "\t\t\t\tclient.setex(key, 3600, JSON.stringify(body));",
+            "\t\t\t\tres.sendResponse(body);",
+            "\t\t\t};",
+            "\t\t\tnext();",
+            "\t\t}",
+            "\t});",
+            "};",
+            "",
+            "app.use(cache);"
+          ],
+          "description": "Set up caching with Redis middleware"
+        },
+        "Helmet Security Middleware": {
+          "prefix": "express-helmet",
+          "body": [
+            "const helmet = require('helmet');",
+            "",
+            "app.use(helmet());"
+          ],
+          "description": "Set up Helmet for security headers"
+        },
+        "Morgan Logging Middleware": {
+          "prefix": "express-morgan",
+          "body": [
+            "const morgan = require('morgan');",
+            "",
+            "app.use(morgan('${1:combined}'));"
+          ],
+          "description": "Set up Morgan for HTTP request logging"
+        },
+        "Request Validation with Joi": {
+          "prefix": "express-joi",
+          "body": [
+            "const Joi = require('joi');",
+            "",
+            "const schema = Joi.object({",
+            "\tname: Joi.string().min(3).required(),",
+            "\tage: Joi.number().integer().min(0).required()",
+            "});",
+            "",
+            "app.post('${1:/}', (req, res) => {",
+            "\tconst { error } = schema.validate(req.body);",
+            "\tif (error) {",
+            "\t\treturn res.status(400).send(error.details[0].message);",
+            "\t}",
+            "\tres.send('Data is valid');",
+            "});"
+          ],
+          "description": "Validate request body using Joi"
+        },
+        "Swagger Documentation": {
+          "prefix": "express-swagger",
+          "body": [
+            "const swaggerUi = require('swagger-ui-express');",
+            "const swaggerDocument = require('./swagger.json');",
+            "",
+            "app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));"
+          ],
+          "description": "Set up Swagger for API documentation"
+        },
+        "File Upload Handling": {
+          "prefix": "express-file-upload",
+          "body": [
+            "const multer = require('multer');",
+            "",
+            "const storage = multer.diskStorage({",
+            "\tdestination: (req, file, cb) => {",
+            "\t\tcb(null, '${1:uploads}');",
+            "\t},",
+            "\tfilename: (req, file, cb) => {",
+            "\t\tcb(null, file.originalname);",
+            "\t}",
+            "});",
+            "",
+            "const upload = multer({ storage: storage });",
+            "",
+            "app.post('${2:/upload}', upload.single('${3:file}'), (req, res) => {",
+            "\tres.send('File uploaded successfully');",
+            "});"
+          ],
+          "description": "Handle file uploads using Multer"
+        },
+        "Rate Limiting": {
+          "prefix": "express-rate-limit",
+          "body": [
+            "const rateLimit = require('express-rate-limit');",
+            "",
+            "const limiter = rateLimit({",
+            "\twindowMs: 15 * 60 * 1000, // 15 minutes",
+            "\tmax: 100 // limit each IP to 100 requests per windowMs",
+            "});",
+            "",
+            "app.use(limiter);"
+          ],
+          "description": "Set up rate limiting"
+        },
+        "Connect to Redis": {
+          "prefix": "express-redis",
+          "body": [
+            "const redis = require('redis');",
+            "",
+            "const redisClient = redis.createClient();",
+            "",
+            "redisClient.on('error', (err) => {",
+            "\tconsole.error('Redis error:', err);",
+            "});"
+          ],
+          "description": "Connect to Redis"
+        },
+        "Send Email with Nodemailer": {
+          "prefix": "express-nodemailer",
+          "body": [
+            "const nodemailer = require('nodemailer');",
+            "",
+            "const transporter = nodemailer.createTransport({",
+            "\thost: '${1:smtp.example.com}',",
+            "\tport: ${2:587},",
+            "\tsecure: false, // true for 465, false for other ports",
+            "\tauth: {",
+            "\t\tuser: '${3:user}',",
+            "\t\tpass: '${4:password}'",
+            "\t}",
+            "});",
+            "",
+            "const mailOptions = {",
+            "\tfrom: '${5:from@example.com}',",
+            "\tto: '${6:to@example.com}',",
+            "\tsubject: '${7:Subject}',",
+            "\ttext: '${8:Hello world}'",
+            "};",
+            "",
+            "transporter.sendMail(mailOptions, (error, info) => {",
+            "\tif (error) {",
+            "\t\treturn console.log(error);",
+            "\t}",
+            "\tconsole.log('Message sent: %s', info.messageId);",
+            "});"
+          ],
+          "description": "Send email using Nodemailer"
+        },
+        "Create Express Router": {
+          "prefix": "express-router",
+          "body": [
+            "const express = require('express');",
+            "const router = express.Router();",
+            "",
+            "router.get('${1:/}', (req, res) => {",
+            "\tres.send('Hello World');",
+            "});",
+            "",
+            "module.exports = router;"
+          ],
+          "description": "Create a new Express router"
+        },
+        "Static File Serving": {
+          "prefix": "express-static",
+          "body": [
+            "app.use(express.static('${1:public}'));"
+          ],
+          "description": "Serve static files"
+        },
+        "Server-Sent Events": {
+          "prefix": "express-sse",
+          "body": [
+            "app.get('/events', (req, res) => {",
+            "\tres.setHeader('Content-Type', 'text/event-stream');",
+            "\tres.setHeader('Cache-Control', 'no-cache');",
+            "\tres.setHeader('Connection', 'keep-alive');",
+            "",
+            "\tsetInterval(() => {",
+            "\t\tres.write(`data: ${JSON.stringify({ time: new Date() })}\\n\\n`);",
+            "\t}, 1000);",
+            "});"
+          ],
+          "description": "Set up Server-Sent Events endpoint"
+        },
+        "Session Storage with MongoDB": {
+          "prefix": "express-session-mongodb",
+          "body": [
+            "const session = require('express-session');",
+            "const MongoStore = require('connect-mongo');",
+            "",
+            "app.use(session({",
+            "\tsecret: '${1:your-secret}',",
+            "\tresave: false,",
+            "\tsaveUninitialized: true,",
+            "\tstore: MongoStore.create({",
+            "\t\tmongoUrl: '${2:mongodb://localhost:27017/sessions}'",
+            "\t})",
+            "}));"
+          ],
+          "description": "Store sessions in MongoDB"
+        },
+        "Cors Middleware": {
+          "prefix": "express-cors",
+          "body": [
+            "const cors = require('cors');",
+            "",
+            "app.use(cors({",
+            "\torigin: '${1:*}',",
+            "\tmethods: '${2:GET,POST,PUT,DELETE}',",
+            "\tallowedHeaders: '${3:Content-Type,Authorization}'",
+            "}));"
+          ],
+          "description": "Set up CORS middleware"
+        },
+        "Serve JSON API": {
+          "prefix": "express-json-api",
+          "body": [
+            "app.get('${1:/api/data}', (req, res) => {",
+            "\tres.json({",
+            "\t\tmessage: '${2:Hello World}'",
+            "\t});",
+            "});"
+          ],
+          "description": "Serve a simple JSON API"
+        },
+        "APIs with Versioning": {
+          "prefix": "express-api-versioning",
+          "body": [
+            "app.use('/api/v1', require('./routes/v1'));",
+            "app.use('/api/v2', require('./routes/v2'));"
+          ],
+          "description": "Set up API versioning"
+        },
+        "GraphQL Server": {
+          "prefix": "express-graphql",
+          "body": [
+            "const { graphqlHTTP } = require('express-graphql');",
+            "const { buildSchema } = require('graphql');",
+            "",
+            "const schema = buildSchema(`",
+            "\ttype Query {",
+            "\t\thello: String",
+            "\t}",
+            "`) ;",
+            "",
+            "const root = {",
+            "\thello: () => 'Hello world!'",
+            "};",
+            "",
+            "app.use('/graphql', graphqlHTTP({",
+            "\tschema: schema,",
+            "\trootValue: root,",
+            "\tgraphiql: true",
+            "}));"
+          ],
+          "description": "Set up a GraphQL server"
+        },
+        "Mongoose Connection": {
+          "prefix": "mongoose-connection",
+          "body": [
+            "const mongoose = require('mongoose');",
+            "",
+            "mongoose.connect('${1:mongodb://localhost:27017/mydatabase}', {",
+            "\tuseNewUrlParser: true,",
+            "\tuseUnifiedTopology: true",
+            "})",
+            ".then(() => {",
+            "\tconsole.log('Connected to MongoDB');",
+            "})",
+            ".catch((err) => {",
+            "\tconsole.error('MongoDB connection error:', err);",
+            "});"
+          ],
+          "description": "Connect to MongoDB using Mongoose"
+        },
+        "Create Mongoose Model": {
+          "prefix": "mongoose-model",
+          "body": [
+            "const mongoose = require('mongoose');",
+            "",
+            "const ${1:SchemaName}Schema = new mongoose.Schema({",
+            "\tname: { type: String, required: true },",
+            "\tage: { type: Number, required: true }",
+            "});",
+            "",
+            "module.exports = mongoose.model('${2:SchemaName}', ${1:SchemaName}Schema);"
+          ],
+          "description": "Create a Mongoose model"
+        },
+        "Debugging with Node Inspector": {
+          "prefix": "node-inspector",
+          "body": [
+            "node --inspect ${1:app.js}"
+          ],
+          "description": "Start Node.js with debugging enabled"
+        },
+        "Serve Static Files with Express": {
+          "prefix": "express-serve-static",
+          "body": [
+            "const path = require('path');",
+            "",
+            "app.use(express.static(path.join(__dirname, '${1:public}')));"
+          ],
+          "description": "Serve static files using Express"
+        },
+        "WebSocket Server": {
+          "prefix": "express-websocket",
+          "body": [
+            "const WebSocket = require('ws');",
+            "",
+            "const wss = new WebSocket.Server({ port: ${1:8080} });",
+            "",
+            "wss.on('connection', ws => {",
+            "\tws.on('message', message => {",
+            "\t\tconsole.log(`Received message => ${message}`);",
+            "\t});",
+            "",
+            "\twss.clients.forEach(client => {",
+            "\t\tif (client.readyState === WebSocket.OPEN) {",
+            "\t\t\tclient.send('Hello Client');",
+            "\t\t}",
+            "\t});",
+            "});"
+          ],
+          "description": "Set up a WebSocket server"
+        },
+        "Express App Initialization": {
+          "prefix": "express-init",
+          "body": [
+            "const express = require('express');",
+            "const app = express();",
+            "",
+            "app.use(express.json());",
+            "",
+            "app.listen(${1:3000}, () => {",
+            "\tconsole.log('Server running on port ${1:3000}');",
+            "});"
+          ],
+          "description": "Initialize a basic Express app"
+        }
+      
+      
 }

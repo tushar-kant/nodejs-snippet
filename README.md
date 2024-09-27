@@ -1,6 +1,3 @@
-Here's the updated `README.md` with the requested additions:
-
----
 
 # node-express-snippets
 
@@ -31,27 +28,99 @@ The "node-snippets" extension provides a collection of useful code snippets for 
 ## Code Prefixes
 
 Here are some useful code prefixes for quick access:
+# Code Prefixes
 
-- **`clog`**: `console.log($1);`
-- **`fn`**: `function ${1:name}(${2:args}) { \t$0 \t}`
-- **`af`**: `const ${1:name} = (${2:args}) => { \t$0 \t};`
-- **`http-server`**: Basic HTTP server setup.
-- **`import`**: `const ${1:moduleName} = require('${2:module}');`
-- **`trycatch`**: Basic try-catch block.
-- **`asyncfn`**: Async function with error handling.
-- **`express-route`**: Basic Express route setup.
-- **`export`**: `module.exports = ${1:module};`
-- **`readfile`**: Read a file asynchronously.
-- **`writefile`**: Write content to a file asynchronously.
-- **`eventemitter`**: Create and use an EventEmitter.
-- **`http-post`**: Send an HTTP POST request.
-- **`mongoose-query`**: Query MongoDB using Mongoose.
-- **`express-middleware`**: Create and use Express middleware.
-- **`promise`**: Create and handle a Promise.
-- **`cluster`**: Create a cluster of Node.js processes.
+- **`clog`**: Inserts a `console.log` statement.
+- **`fn`**: Creates a standard function.
+- **`af`**: Creates an arrow function.
+- **`http-server`**: Sets up a basic HTTP server.
+- **`import`**: Imports a module using `require`.
+- **`trycatch`**: Provides a basic try-catch block for error handling.
+- **`asyncfn`**: Defines an async function with error handling.
+- **`express-route`**: Sets up a basic route in an Express application.
+- **`export`**: Exports a module.
+- **`readfile`**: Reads a file asynchronously.
+- **`writefile`**: Writes content to a file asynchronously.
+- **`eventemitter`**: Creates and uses an EventEmitter.
+- **`http-post`**: Sends an HTTP POST request.
+- **`mongoose-query`**: Queries MongoDB using Mongoose.
+- **`express-middleware`**: Creates and uses middleware in Express.
+- **`promise`**: Creates and handles a Promise.
+- **`cluster`**: Creates a cluster of Node.js processes.
+- **`express-joi`**: Validate request body using Joi.
+- **`express-swagger`**: Set up Swagger for API documentation.
+- **`express-file-upload`**: Handle file uploads using Multer.
+- **`express-rate-limit`**: Set up rate limiting.
+- **`express-redis`**: Connect to Redis.
+- **`express-nodemailer`**: Send email using Nodemailer.
+- **`express-router`**: Create a new Express router.
+- **`express-static`**: Serve static files.
+- **`express-sse`**: Set up Server-Sent Events endpoint.
+- **`express-session-mongodb`**: Store sessions in MongoDB.
+- **`express-cors`**: Set up CORS middleware.
+- **`express-json-api`**: Serve a simple JSON API.
+- **`express-api-versioning`**: Set up API versioning.
+- **`express-graphql`**: Set up a GraphQL server.
+- **`mongoose-connection`**: Connect to MongoDB using Mongoose.
+- **`mongoose-model`**: Create a Mongoose model.
+- **`node-inspector`**: Start Node.js with debugging enabled.
+- **`express-serve-static`**: Serve static files using Express.
+- **`express-websocket`**: Set up a WebSocket server.
+- **`express-init`**: Initialize a basic Express app.
+- **`express-setup`**: Basic Express server setup
+- **`express-get`**: Define a GET route
+- **`express-post`**: Define a POST route
+- **`express-put`**: Define a PUT route
+- **`express-delete`**: Define a DELETE route
+- **`express-middleware`**: Define middleware
+- **`express-error`**: Define error handling middleware
+- **`express-router`**: Set up an Express router
+- **`express-static`**: Serve static files from a directory
+- **`express-view`**: Set up a template engine
+- **`express-custom-error`**: Render a custom 404 error page
+- **`express-json`**: Send a JSON response
+- **`express-redirect`**: Redirect to another URL
+- **`express-query`**: Access query parameters from the request
+- **`express-param`**: Access route parameters from the request
+- **`express-header`**: Set response headers
+- **`express-auth`**: Set up basic authentication middleware
+- **`express-cors`**: Set up CORS middleware
+- **`express-rate-limit`**: Set up rate limiting middleware
+- **`express-compression`**: Set up compression middleware
+- **`express-session`**: Set up session middleware
+- **`express-body-parser`**: Set up body parser middleware
+- **`express-file-upload`**: Set up file upload middleware
+- **`express-mongodb`**: Set up MongoDB connection
+- **`express-postgresql`**: Set up PostgreSQL connection
+- **`express-mysql`**: Set up MySQL connection
+- **`express-register`**: User registration route
+- **`express-login`**: User login route
+
+## Video Tutorial
+
+Check out the video tutorial for a detailed overview of these snippets:
+
+![node-snippets video](https://github.com/tushar-kant/nodejs-snippet/raw/main/node_video.mp4)
 
 
 
+## Video Tutorial
+
+Check out the video tutorial for a detailed overview of these snippets:
+
+<video width="640" height="360" controls autoplay>
+  <source src="https://github.com/tushar-kant/nodejs-snippet/raw/main/node_video.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+Or [download the video](https://github.com/tushar-kant/nodejs-snippet/raw/main/node_video.mp4) to watch it locally.
+
+## Screenshots
+
+Here are some screenshots demonstrating the use of these snippets:
+
+![Image 1](https://github.com/tushar-kant/nodejs-snippet/raw/main/image1.jpeg)
+
+![Image 2](https://github.com/tushar-kant/nodejs-snippet/raw/main/image2.jpeg)
 
 ## Requirements
 
